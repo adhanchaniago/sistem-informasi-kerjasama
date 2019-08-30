@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/adminlte/bower_components/Ionicons/css/ionicons.min.css'); ?>">
 <!-- DataTables -->
 <link rel="stylesheet" href="<?php echo base_url('assets/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url('assets/adminlte/dist/css/AdminLTE.min.css'); ?>">
 <!-- iCheck -->
@@ -31,5 +32,11 @@
 <style>
 .swal2-container {
   zoom: 1.5;
+}
+.control-label{
+  text-transform: capitalize;
+}
+.ml-1{
+  margin-left:1rem;
 }
 </style>
