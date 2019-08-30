@@ -19,7 +19,7 @@
         </form>
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">HEADER</li>
-          <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+          <li class=""><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
           <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
           <li class="treeview">
             <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -28,9 +28,11 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">Link in level 2</a></li>
               <li><a href="#">Link in level 2</a></li>
             </ul>
           </li>
+          <li class="header">Management</li>
+          <li class=""><a href="<?php echo base_url('Management/User') ?>"><i class="fa fa-user"></i> <span>User</span></a></li>
         </ul>
       </section>
