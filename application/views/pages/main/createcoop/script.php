@@ -18,20 +18,50 @@
       allowPageScroll: true,
       alwaysVisible: true
     });
+
+    $("form#form-upload-excel").submit(function(e) {
+      e.preventDefault();
+
+      let elementForm = $(this);
+      let formData = new FormData(this);
+
+      $.ajax({
+        url: elementForm.attr('action'),
+        type: 'POST',
+        data: formData,
+        dataType: 'JSON',
+        success: function(data) {
+          Object.keys(data.data).forEach(function(key) {
+            add_form(data.data[key]);
+          });
+          elementForm.trigger('reset');
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+      });
+    });
+
+    $('#input-upload').change(function() {
+      $("form#form-upload-excel").submit();
+    });
   });
 
-  var add_form = () => {
+  var add_form = (row_data = null) => {
     $.ajax({
       url: base_url + '/' + cname + "/create",
       type: "POST",
       data: {
-        index_form: index_form
+        index_form: index_form,
+        row_data : row_data
       },
+      async: false,
       success: (data) => {
         $('#form-container').append(data);
-        $('#form-nav-container').append('<li><a href="#form-coop-' + index_form + '">Kerjasama <span class="coop-number">' + index_form + '</span> <button class="btn btn-xs btn-danger pull-right" onclick="remove_form(\'#form-coop-' + index_form + '\')"><i class="fa fa-trash"></i></button></a></li>');
+        let index = $('#form-container').find('.box:last').data('index');
+        $('#form-nav-container').append('<li><a href="#form-coop-' + index + '">Kerjasama <span class="coop-number">' + index + '</span> <button class="btn btn-xs btn-danger pull-right" onclick="remove_form(\'#form-coop-' + index + '\')"><i class="fa fa-trash"></i></button></a></li>');
 
-        let newForm = $('#form-coop-' + index_form);
+        let newForm = $('#form-coop-' + index);
 
         newForm.find('.select2').select2();
         newForm.find('#input-company_name').change(function() {
@@ -41,7 +71,10 @@
         newForm.find("#input-start_date").change(function() {
           newForm.find('#input-end_date').prop('min', $(this).val());
         })
-        
+        Object.keys(row_data).forEach(function(key) {
+          newForm.find('[name="'+key+'"]').val(row_data[key]).trigger('change');
+          });
+
         newForm.find('form').submit(function(e) {
           e.preventDefault();
 
@@ -81,10 +114,11 @@
           });
         });
 
-        index_form++;
+        
       }
-    })
-  }
+    });
+    index_form++;
+  };
 
   var remove_form = (form_target) => {
     $('[href="' + form_target + '"]').parent().fadeOut(300, function() {

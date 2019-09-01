@@ -119,4 +119,13 @@ class Coop_model extends CI_Model
         ->get($this->tb_company)
         ->result();
     }
+
+    public function find_coop_type($name)
+    {
+        return $this->db
+        ->where('name',$name)
+        ->get($this->tb_coop_type)
+        ->row(0)
+        ->id;
+    }
 }

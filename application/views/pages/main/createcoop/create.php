@@ -1,4 +1,4 @@
-<div class="box" id="form-coop-<?php echo $index_form?>">
+<div class="box" id="form-coop-<?php echo $index_form?>" data-index="<?php echo $index_form?>">
     <div class="box-header">
         <h3 class="box-title">Kerjasama <span id="coop-number"><?php echo $index_form ?></span></h3>
         <button type="submit" class="btn btn-xs btn-primary pull-right" id="modal-btn-accept" form="form-create-<?php echo $index_form?>">Submit</button>
