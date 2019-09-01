@@ -12,6 +12,8 @@
 <script src="<?php echo base_url('assets/adminlte/bower_components/fastclick/lib/fastclick.js'); ?>"></script>
 <!-- SweatAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<!-- Toast -->
+<script src="<?php echo base_url('assets/plugins/toast-master/js/jquery.toast.js'); ?>"></script>
 <!-- Select2 -->
 <script src="<?php echo base_url('assets/adminlte/bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
 
@@ -21,8 +23,8 @@
 <script>
     window.base_url = '<?php echo base_url(); ?>';
 
-    var filename = window.location.href.substr(window.location.href.lastIndexOf("/") + 1);
-    $('a[href*=' + filename + ']').parent().addClass('active').parents('.treeview').addClass('menu-open').find('.treeview-menu').css('display', 'block');
+    var filename = "<?php echo current_url(); ?>";
+    $('a[href*="' + filename + '"]').parent().addClass('active').parents('.treeview').addClass('menu-open').find('.treeview-menu').css('display', 'block');
 </script>
 <!-- form -->
 <script>

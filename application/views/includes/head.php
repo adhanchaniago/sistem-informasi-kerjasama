@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/adminlte/plugins/iCheck/square/blue.css'); ?>">
 <!-- Select2 -->
 <link rel="stylesheet" href="<?php echo base_url('assets/adminlte/bower_components/select2/dist/css/select2.min.css'); ?>">
+<!-- Toast -->
+<link rel="stylesheet" href="<?php echo base_url('assets/plugins/toast-master/css/jquery.toast.css'); ?>">
 <!-- Theme style -->
 <link rel="stylesheet" href="<?php echo base_url('assets/adminlte/dist/css/AdminLTE.min.css'); ?>">
 
@@ -42,5 +44,8 @@
 }
 .ml-1{
   margin-left:1rem;
+}
+.form-scroll {
+  scroll-behavior: smooth;
 }
 </style>
