@@ -1,30 +1,21 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class User_model extends CI_Model
+class CoopType_model extends CI_Model
 {
-    
-    var $tb_user = 'tb_user';
-    var $_user_ci = '_user_ci';
-    
+    var $tb_coop_type = 'tb_coop_type';
+
     public function create($set_data)
     {
         $insert = $this->db
-        ->insert($this->tb_user,$set_data);
-        if($insert){
-            $insert_id = $this->db->insert_id();
-            $set_ci = [
-                'fk_user' => $insert_id,
-            ];
-            $this->db
-            ->insert($this->_user_ci,$set_ci);
-        }
+        ->insert($this->tb_coop_type,$set_data);
+        return $insert;
     }
 
     public function get()
     {
         return $this->db
-        ->get($this->tb_user)
+        ->get($this->tb_coop_type)
         ->result();
     }
 
@@ -32,7 +23,7 @@ class User_model extends CI_Model
     {
         return $this->db
         ->where('id',$id)
-        ->get($this->tb_user)
+        ->get($this->tb_coop_type)
         ->row(0);
     }
 
@@ -40,7 +31,7 @@ class User_model extends CI_Model
     {
         $update = $this->db
         ->where('id',$id)
-        ->update($this->tb_user,$set_data);
+        ->update($this->tb_coop_type,$set_data);
         return $update;
     }
     public function delete($id)
@@ -53,11 +44,13 @@ class User_model extends CI_Model
         }else{
             $this->db->where('id',$id);
         }
-        $this->db->delete($this->tb_user);
+        $this->db->delete($this->tb_coop_type);
         $error = $this->db->error();
 
         $this->db->db_debug = $db_debug;
 
         return $error;
     }
+    
+    
 }

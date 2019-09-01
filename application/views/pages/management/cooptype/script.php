@@ -56,9 +56,8 @@
                     'orderable': false,
                     'data': (data) => {
                         let ret = "";
-                        if (data.username != lg_username) {
-                            ret += '<input type="checkbox" name="select[]" class="check" value="' + data.id + '">';
-                        }
+                        ret += '<input type="checkbox" name="select[]" class="check" value="' + data.id + '">';
+                   
                         return ret;
                     }
                 },
@@ -79,9 +78,8 @@
                         let ret = "";
                         ret += '<div class="btn-group">';
                         ret += '<a href="javascript:void(0)" onclick="update_prompt(this)" class="btn btn-xs btn-flat text-success" data-id="' + data.id + '"><i class="fa fa-pencil"></i> Edit</a>';
-                        if (data.username != lg_username) {
-                            ret += '<a href="javascript:void(0)" onclick="delete_prompt(this)" class="btn btn-xs btn-flat text-danger" data-id="' + data.id + '"><i class="fa fa-trash"></i> Hapus</a>';
-                        }
+                        ret += '<a href="javascript:void(0)" onclick="delete_prompt(this)" class="btn btn-xs btn-flat text-danger" data-id="' + data.id + '"><i class="fa fa-trash"></i> Hapus</a>';
+                       
                         ret += '</div>';
                         return ret;
                     }
@@ -89,22 +87,6 @@
                 {
                     'title': 'Nama',
                     'data': 'name'
-                },
-                {
-                    'title': 'Alamat',
-                    'data': 'address'
-                },
-                {
-                    'title': 'Telepon',
-                    'data': 'phone'
-                },
-                {
-                    'title': 'Email',
-                    'data': 'email'
-                },
-                {
-                    'title': 'Username',
-                    'data': 'username'
                 }
             ],
             "fnInitComplete": function(oSettings) {
@@ -121,7 +103,7 @@
 
     var create_prompt = (btnObject) => {
         let elementModal = $('#modal-default');
-        elementModal.find('.modal-title').text('Tambah Pengguna');
+        elementModal.find('.modal-title').text('Tambah Jenis Kerjasama');
         elementModal.find('#modal-btn-accept').text('Tambah');
         elementModal.find('#modal-btn-accept').attr('form', 'form-create');
         $.ajax({
@@ -175,7 +157,7 @@
         let elementButton = $(btnObject);
         let elementModal = $('#modal-default');
         let id = elementButton.data('id');
-        elementModal.find('.modal-title').text('Edit Pengguna');
+        elementModal.find('.modal-title').text('Edit Jenis Kerjasama');
         elementModal.find('#modal-btn-accept').text('Edit');
         elementModal.find('#modal-btn-accept').attr('form', 'form-update');
         $.ajax({

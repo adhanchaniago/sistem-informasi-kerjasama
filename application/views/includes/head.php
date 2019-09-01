@@ -11,10 +11,14 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="<?php echo base_url('assets/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/dist/css/AdminLTE.min.css'); ?>">
+
 <!-- iCheck -->
 <link rel="stylesheet" href="<?php echo base_url('assets/adminlte/plugins/iCheck/square/blue.css'); ?>">
+<!-- Select2 -->
+<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/bower_components/select2/dist/css/select2.min.css'); ?>">
+<!-- Theme style -->
+<link rel="stylesheet" href="<?php echo base_url('assets/adminlte/dist/css/AdminLTE.min.css'); ?>">
+
 <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->

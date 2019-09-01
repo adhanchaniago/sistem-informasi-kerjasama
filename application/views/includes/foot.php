@@ -12,6 +12,8 @@
 <script src="<?php echo base_url('assets/adminlte/bower_components/fastclick/lib/fastclick.js'); ?>"></script>
 <!-- SweatAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url('assets/adminlte/bower_components/select2/dist/js/select2.full.min.js'); ?>"></script>
 
 <script src="<?php echo base_url('assets/adminlte/dist/js/adminlte.min.js'); ?>"></script>
 

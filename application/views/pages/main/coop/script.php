@@ -35,7 +35,7 @@
                     }
                 },
                 {
-                    text: '<i class="fa fa-trash"></i> Delete All',
+                    text: '<i class="fa fa-trash"></i> Hapus semua',
                     className: 'btn btn-sm btn-danger',
                     action: function(e, dt, node, config) {
                         if ($('.check:checked').length) {
@@ -56,9 +56,7 @@
                     'orderable': false,
                     'data': (data) => {
                         let ret = "";
-                        if (data.username != lg_username) {
-                            ret += '<input type="checkbox" name="select[]" class="check" value="' + data.id + '">';
-                        }
+                        ret += '<input type="checkbox" name="select[]" class="check" value="' + data.id + '">';
                         return ret;
                     }
                 },
@@ -79,32 +77,39 @@
                         let ret = "";
                         ret += '<div class="btn-group">';
                         ret += '<a href="javascript:void(0)" onclick="update_prompt(this)" class="btn btn-xs btn-flat text-success" data-id="' + data.id + '"><i class="fa fa-pencil"></i> Edit</a>';
-                        if (data.username != lg_username) {
-                            ret += '<a href="javascript:void(0)" onclick="delete_prompt(this)" class="btn btn-xs btn-flat text-danger" data-id="' + data.id + '"><i class="fa fa-trash"></i> Hapus</a>';
-                        }
+                        ret += '<a href="javascript:void(0)" onclick="delete_prompt(this)" class="btn btn-xs btn-flat text-danger" data-id="' + data.id + '"><i class="fa fa-trash"></i> Hapus</a>';
+                
                         ret += '</div>';
                         return ret;
                     }
                 },
                 {
-                    'title': 'Nama',
-                    'data': 'name'
+                    'title': 'Nama Perusahaan',
+                    'data': 'company_name'
                 },
                 {
-                    'title': 'Alamat',
-                    'data': 'address'
+                    'title': 'Alamat Perusahaan',
+                    'data': 'company_address'
                 },
                 {
-                    'title': 'Telepon',
-                    'data': 'phone'
+                    'title': 'No',
+                    'data': 'coop_number'
                 },
                 {
-                    'title': 'Email',
-                    'data': 'email'
+                    'title': 'Deskripsi',
+                    'data': 'description'
                 },
                 {
-                    'title': 'Username',
-                    'data': 'username'
+                    'title': 'Tanggal Mulai',
+                    'data': 'start_date'
+                },
+                {
+                    'title': 'Tanggal Selesai',
+                    'data': 'end_date'
+                },
+                {
+                    'title': 'Jenis Kerjasama',
+                    'data': 'coop_type_name'
                 }
             ],
             "fnInitComplete": function(oSettings) {
@@ -121,7 +126,7 @@
 
     var create_prompt = (btnObject) => {
         let elementModal = $('#modal-default');
-        elementModal.find('.modal-title').text('Tambah Pengguna');
+        elementModal.find('.modal-title').text('Tambah Kerjasama');
         elementModal.find('#modal-btn-accept').text('Tambah');
         elementModal.find('#modal-btn-accept').attr('form', 'form-create');
         $.ajax({
@@ -130,6 +135,14 @@
             success: (data) => {
                 elementModal.find('#modal-body-container').html(data);
                 elementModal.modal('show');
+                elementModal.find('.select2').select2();
+                elementModal.find('#input-company_name').change(function(){
+                    let address = elementModal.find('#list-company').find('[value="'+$(this).val()+'"]').data('address');
+                    elementModal.find('#input-company_address').val(address);
+                });
+                elementModal.find("#input-start_date").change(function(){
+                    elementModal.find('#input-end_date').prop('min',$(this).val());
+                })
 
                 $("form#form-create").submit(function(e) {
                     e.preventDefault();
@@ -175,7 +188,7 @@
         let elementButton = $(btnObject);
         let elementModal = $('#modal-default');
         let id = elementButton.data('id');
-        elementModal.find('.modal-title').text('Edit Pengguna');
+        elementModal.find('.modal-title').text('Edit Kerjasama');
         elementModal.find('#modal-btn-accept').text('Edit');
         elementModal.find('#modal-btn-accept').attr('form', 'form-update');
         $.ajax({
@@ -187,6 +200,14 @@
             success: (data) => {
                 elementModal.find('#modal-body-container').html(data);
                 elementModal.modal('show');
+                elementModal.find('.select2').select2();
+                elementModal.find('#input-company_name').change(function(){
+                    let address = elementModal.find('#list-company').find('[value="'+$(this).val()+'"]').data('address');
+                    elementModal.find('#input-company_address').val(address);
+                });
+                elementModal.find("#input-start_date").change(function(){
+                    elementModal.find('#input-end_date').prop('min',$(this).val());
+                })
 
                 $("form#form-update").submit(function(e) {
                     e.preventDefault();

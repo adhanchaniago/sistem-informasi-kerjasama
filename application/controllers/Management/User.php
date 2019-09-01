@@ -70,6 +70,7 @@ class User extends CI_Controller
 		$this->form_validation->set_message('required', '{field} harus diisi');
 		$this->form_validation->set_message('matches', '{field} tidak sama');
 		$this->form_validation->set_message('max_length', '%s tidak boleh melebihi %s karakter');
+		$this->form_validation->set_message('is_unique', '%s sudah ada');
 
 		$this->form_validation->set_rules($field = "name", 'Nama', "trim|required|max_length[32]");
 		$this->form_validation->set_rules($field = "address", 'Alamat', "trim|required|max_length[64]");
@@ -115,6 +116,7 @@ class User extends CI_Controller
 		$this->form_validation->set_message('required', '{field} harus diisi');
 		$this->form_validation->set_message('matches', '{field} tidak sama');
 		$this->form_validation->set_message('max_length', '%s tidak boleh melebihi %s karakter');
+		$this->form_validation->set_message('is_unique', '%s sudah ada');
 
 		$this->form_validation->set_rules($field = "name", 'Nama', "trim|required|max_length[32]");
 		$this->form_validation->set_rules($field = "address", 'Alamat', "trim|required|max_length[64]");

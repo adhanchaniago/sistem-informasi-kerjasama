@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Daftar User</h3>
+        <h3 class="box-title">Daftar Kerjasama</h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -12,10 +12,13 @@
               <th data-filter=""></th>
               <th data-filter=""></th>
               <th data-filter=""></th>
-              <th data-filter="text"></th>
-              <th data-filter="text"></th>
 
               <th data-filter="text"></th>
+              <th data-filter="text"></th>
+              <th data-filter="text"></th>
+              <th data-filter="text"></th>
+              <th data-filter="text"></th>
+              
               <th data-filter="text"></th>
               <th data-filter="text"></th>
             </tr>
