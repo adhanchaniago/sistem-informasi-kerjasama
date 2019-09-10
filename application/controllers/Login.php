@@ -28,10 +28,12 @@ class Login extends CI_Controller {
             $password = $this->input->post('password');
 
             $user_data = $this->Login_model->get_user_data($username,$password);
+            $acl = $this->Login_model->get_acl($user_data->id);
             $sess_data = [
                 'is_login' => true,
                 'lg_id' => $user_data->id,
-                'lg_username' => $user_data->username
+                'lg_username' => $user_data->username,
+                'lg_acl' => $acl
             ];
             $this->session->set_userdata($sess_data);
             

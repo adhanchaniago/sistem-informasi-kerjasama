@@ -86,6 +86,16 @@ class Login_model extends CI_Model
             return false;
         }
     }
+
+    public function get_acl($id)
+    {
+        return $this->db
+        ->select('crud_user,crud_coop_type,crud_coop')
+        ->join('tb_role','_user_role.fk_role=tb_role.id')
+        ->where('fk_user',$id)
+        ->get('_user_role')
+        ->row_array(0);
+    }
     public function ci_logout()
     {
         $lg_id = $this->session->userdata('lg_id');

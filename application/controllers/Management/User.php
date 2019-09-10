@@ -10,6 +10,7 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		must_login();
+		is_allow(['crud_user']);
 		$this->load->model(['User_model']);
 	}
 	public function index()

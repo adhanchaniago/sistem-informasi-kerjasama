@@ -40,4 +40,46 @@ if ( ! function_exists('must_login'))
 	}   
 }
 
+if ( ! function_exists('is_allow'))
+{
+	function is_allow($array_access)
+	{
+		$CI =& get_instance();
+		$acl = $CI->session->userdata('lg_acl');
+
+		$list_bool = array();
+		foreach ($array_access as $key => $value) {
+			if(array_key_exists($value,$acl)){
+				array_push($list_bool, ($acl[$value] == '1' ? true : false));
+			}
+		}
+		if(in_array(true, $list_bool)){
+			return true;
+		}else{
+			redirect('error403');
+		}	
+	}   
+}
+
+
+if ( ! function_exists('is_display'))
+{
+	function is_display($array_access)
+	{
+		$CI =& get_instance();
+		$acl = $CI->session->userdata('lg_acl');
+
+		$list_bool = array();
+		foreach ($array_access as $key => $value) {
+			if(array_key_exists($value,$acl)){
+				array_push($list_bool, ($acl[$value] == '1' ? true : false));
+			}
+		}
+		if(in_array(true, $list_bool)){
+			return true;
+		}
+		return false;	
+	}   
+}
+
 ?>
