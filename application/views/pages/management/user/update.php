@@ -32,6 +32,28 @@
                 <input type="text" name="username" class="form-control" id="input-username" value="<?php echo $user->username ?>" placeholder="input username">
             </div>
         </div>
+        
+        <h5>Tambahan pilihan</h5>
+        <div class="form-group">
+            <label for="input-role" class="col-sm-2 control-label">role</label>
+            <div class="col-sm-10">
+                <select name="fk_role" id="input-role" class="form-control">
+                    <?php foreach($combo_role as $key => $value): ?>
+                        <option value="<?php echo $value->id ?>"><?php echo ucfirst($value->type) ?></option>
+                    <?php endforeach ?>
+                </select>
+                <script>$('#input-role').val('<?php echo $user->fk_role ?>')</script>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="input-password" class="col-sm-2 control-label">Kata Sandi</label>
+            <div class="col-sm-5">
+                <input type="password" name="password" class="form-control" id="input-password" placeholder="input password">
+            </div>
+            <div class="col-sm-5">
+                <input type="password" name="repassword" class="form-control" id="input-password" placeholder="reinput password">
+            </div>
+        </div>
         <?php echo form_close(); ?>
     </div>
 </div>

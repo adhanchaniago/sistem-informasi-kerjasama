@@ -105,6 +105,10 @@
                 {
                     'title': 'Username',
                     'data': 'username'
+                },
+                {
+                    'title': 'Role',
+                    'data': 'role'
                 }
             ],
             "fnInitComplete": function(oSettings) {

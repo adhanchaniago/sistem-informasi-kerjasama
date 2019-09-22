@@ -6,6 +6,7 @@ class Coop_model extends CI_Model
     var $tb_coop = 'tb_coop';
     var $tb_company = 'tb_company';
     var $tb_coop_type = 'tb_coop_type';
+    var $vw_coop = 'vw_coop';
 
     public function create($set_data)
     {
@@ -43,7 +44,7 @@ class Coop_model extends CI_Model
     public function get()
     {
         return $this->db
-        ->select($this->tb_coop.'.id,'.$this->tb_company.'.name as company_name,'.$this->tb_company.'.address as company_address,coop_number,description,start_date,end_date,tb_coop_type.name as coop_type_name')
+        ->select($this->tb_coop.'.id,'.$this->tb_company.'.name as company_name,'.$this->tb_company.'.address as company_address,coop_number,description,start_date,end_date,status,tb_coop_type.name as coop_type_name')
         ->join($this->tb_company,$this->tb_coop.'.fk_company='.$this->tb_company.'.id')
         ->join($this->tb_coop_type,$this->tb_coop.'.fk_coop_type='.$this->tb_coop_type.'.id')
         ->get($this->tb_coop)
@@ -127,5 +128,24 @@ class Coop_model extends CI_Model
         ->get($this->tb_coop_type)
         ->row(0)
         ->id;
+    }
+
+    public function get_coop_reminder()
+    {
+        $now = date('Y-m-d');
+        
+        $coop_reminder = $this->db
+        ->where('remind_date <=',$now)
+        ->where('status',0)
+        ->get($this->vw_coop);
+        
+        return $coop_reminder->result();
+    }
+
+    public function change_status($id,$status)
+    {
+        $this->db
+        ->where('id',$id)
+        ->update($this->tb_coop,['status' => $status]);
     }
 }

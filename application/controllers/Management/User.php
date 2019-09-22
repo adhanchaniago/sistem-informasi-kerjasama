@@ -52,7 +52,8 @@ class User extends CI_Controller
 
 		$data = [
 			'cname' => $this->cname,
-			'user' => $this->User_model->get_by_id($id)
+			'user' => $this->User_model->get_by_id($id),
+			'combo_role' => $this->User_model->get_role()
 		];
 		$this->load->view('pages/management/user/update', $data);
 	}
@@ -125,6 +126,11 @@ class User extends CI_Controller
 		$this->form_validation->set_rules($field = "email", 'Email', "trim|required|max_length[64]".($this->input->post('email') != $user->email ? '|is_unique[tb_user.email]' : ''));
 		$this->form_validation->set_rules($field = "username", 'Username', "trim|required|max_length[16]".($this->input->post('username') != $user->username ? '|is_unique[tb_user.username]' : ''));
 		
+		if($this->input->post('password') != ""){
+			$this->form_validation->set_rules($field = "password", 'Kata Sandi', "trim|required|max_length[32]|matches[repassword]");
+			$this->form_validation->set_rules($field = "repassword", 'Kata Sandi ulang', "trim|required|max_length[32]");	
+		}
+
 
 		if ($this->form_validation->run() == true) {
 			$set_data = [
@@ -134,7 +140,12 @@ class User extends CI_Controller
 				'email' => $this->input->post('email'),
 				'username' => $this->input->post('username')
 			];
+			if($this->input->post('password') != ""){
+				$set_data['password'] = md5($this->input->post('password'));
+			}
 			$this->User_model->update($id,$set_data);
+			$fk_role = $this->input->post('fk_role');
+			$this->User_model->update_role($id,$fk_role);
 			echo json_encode([
 				'code' => 0,
 				'title' => 'Update',
