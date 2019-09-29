@@ -31,6 +31,9 @@
         <li><a href="<?php echo base_url('Main/Coop') ?>">Daftar Kerjasama</a></li>
       </ul>
     </li>
+    
+    <li class=""><a href="<?php echo base_url('Main/StatusCoop') ?>"><i class="fa fa-user"></i> <span>Status Kerjasama</span></a></li>
+    <li class=""><a href="<?php echo base_url('Main/ConfigEmail') ?>"><i class="fa fa-user"></i> <span>Configure Email</span></a></li>
     <li class="header">Management</li>
     <li class=""><a href="<?php echo base_url('Management/User') ?>"><i class="fa fa-user"></i> <span>Pengguna</span></a></li>
     <li class=""><a href="<?php echo base_url('Management/CoopType') ?>"><i class="fa fa-user"></i> <span>Jenis Kerjasama</span></a></li>

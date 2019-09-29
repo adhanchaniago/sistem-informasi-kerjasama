@@ -41,7 +41,8 @@ class User extends CI_Controller
 	public function create()
 	{
 		$data = [
-			'cname' => $this->cname
+			'cname' => $this->cname,
+			'combo_role' => $this->User_model->get_role()
 		];
 		$this->load->view('pages/management/user/create', $data);
 	}
@@ -92,7 +93,9 @@ class User extends CI_Controller
 				'username' => $this->input->post('username'),
 				'password' => md5($this->input->post('password'))
 			];
-			$this->User_model->create($set_data);
+			
+			$fk_role = $this->input->post('fk_role');
+			$this->User_model->create($set_data,$fk_role);
 			echo json_encode([
 				'code' => 0,
 				'title' => 'Create',

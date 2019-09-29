@@ -9,25 +9,26 @@ class Caller extends CI_Controller {
     
     public function send_reminder()
     {
-        $this->load->model('Coop_model');
-        #config
-        $email_user = 'assetmanagementsai@gmail.com';
-        $email_pass = 'assetmanagementsai123';
+		$this->load->model('Coop_model');
+		
+		$this->load->model('ConfigEmail_model');
+		$_config = $this->ConfigEmail_model->get_all();
+		#config
+		
+		
         $pd4_email = "aldansorry@gmail.com";
-        $email_subject = "NEW EMAIL";
-        $email_from_cc = "si_kerjasama@polinema.ac.id";
-        $email_from_text = "Sistem Informasi Kerjasama";
-        
         $data = [
             'coop' => $this->Coop_model->get_coop_reminder()
-        ];
+		];
+		
+		// $this->load->view("email/reminder",$data);
 
 		$config = Array(
-			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_port' => 465,
-			'smtp_user' => $email_user,
-			'smtp_pass' => $email_pass,
+			'protocol' => $_config['email_protocol'],
+			'smtp_host' => $_config['email_smtp_host'],
+			'smtp_port' => (int) $_config['email_smtp_port'],
+			'smtp_user' => $_config['email_username'],
+			'smtp_pass' => $_config['email_password'],
 			'mailtype'  => 'html', 
 			'charset'   => 'iso-8859-1',
 			'newline' => "\r\n",
@@ -37,9 +38,9 @@ class Caller extends CI_Controller {
 		$this->email->clear();
 
 		$this->email
-		->from($email_from_cc, $email_from_text)
+		->from($_config['email_from_cc'], $_config['email_from_text'])
 		->to($pd4_email)
-		->subject($email_subject)
+		->subject($_config['email_subject'])
 		->set_mailtype('html');
 		$html = $this->load->view("email/reminder",$data,true);
 		$this->email->message($html);

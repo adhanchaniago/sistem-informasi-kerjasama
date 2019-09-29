@@ -26,6 +26,17 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="input-role" class="col-sm-2 control-label">role</label>
+            <div class="col-sm-10">
+                <select name="fk_role" id="input-role" class="form-control">
+                    <?php foreach($combo_role as $key => $value): ?>
+                        <option value="<?php echo $value->id ?>"><?php echo ucfirst($value->type) ?></option>
+                    <?php endforeach ?>
+                </select>
+                <script>$('#input-role').val('<?php echo $user->fk_role ?>')</script>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="input-username" class="col-sm-2 control-label">username</label>
             <div class="col-sm-10">
                 <input type="text" name="username" class="form-control" id="input-username" placeholder="input username">

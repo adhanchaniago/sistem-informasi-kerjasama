@@ -27,28 +27,7 @@
                 [1, "asc"]
             ],
             dom: '<"pull-left"<"pull-right ml-1"l>B>fr<"table-responsive"t>ip',
-            buttons: [{
-                    text: '<i class="fa fa-plus"></i> Tambah',
-                    className: 'btn btn-sm btn-primary',
-                    action: function(e, dt, node, config) {
-                        create_prompt(node);
-                    }
-                },
-                {
-                    text: '<i class="fa fa-trash"></i> Hapus semua',
-                    className: 'btn btn-sm btn-danger',
-                    action: function(e, dt, node, config) {
-                        if ($('.check:checked').length) {
-                            delete_prompt(node);
-                        } else {
-                            Swal.fire(
-                                'Information',
-                                'Tidak ada baris yang dicentang',
-                                'info'
-                            );
-                        }
-                    }
-                }
+            buttons: [
             ],
             'columns': [{
                     'title': '<input type="checkbox" name="r1" id="check-all">',

@@ -8,15 +8,14 @@ class User_model extends CI_Model
     var $_user_ci = '_user_ci';
     var $tb_role = 'tb_role';
     var $_user_role = '_user_role';
-    var $default_id_role = "2";
     
-    public function create($set_data)
+    public function create($set_data,$fk_role)
     {
         $insert = $this->db
         ->insert($this->tb_user,$set_data);
         if($insert){
             $insert_id = $this->db->insert_id();
-            $this->insert_role($insert_id);
+            $this->insert_role($insert_id,$fk_role);
             $set_ci = [
                 'fk_user' => $insert_id,
             ];
@@ -75,11 +74,11 @@ class User_model extends CI_Model
         ->get($this->tb_role)
         ->result();
     }
-    public function insert_role($id_user)
+    public function insert_role($id_user,$fk_role)
     {
         $set_role = [
             'fk_user' => $id_user,
-            'fk_role' => $this->default_id_role,
+            'fk_role' => $fk_role,
         ];
         
         $role_data = $this->db
