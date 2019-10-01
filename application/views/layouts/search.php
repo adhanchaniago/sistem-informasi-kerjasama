@@ -27,13 +27,49 @@
             border-top: 2px solid #00bbec;
             padding: 1rem 1.5rem;
         }
+
+        .header-search{
+            position: relative;
+            height:100px;
+            background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 25%, rgba(0,212,255,1) 100%);
+            width: 100%;
+            position: fixed;
+            top:0;
+            z-index:1000;
+            border-bottom-style: solid;
+            border-bottom-color: #e88335;
+            border-bottom-width: 4px;
+        }
+
+        .header-img {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            margin: 3px;
+        }
+
+        .header-container {
+
+            position: absolute;
+            left:100px;
+            padding: 15px;
+            color: #fff;
+
+            width: calc(100%-5px);
+        }
     </style>
 </head>
 
 <body>
     <div class="s009">
 
-        <div style="height:100px;background-color:red;width: 100%;position: fixed;top:0;z-index:1000;">sad</div>
+        <div class="header-search">
+            <img src="<?php echo base_url('assets/img/polinema.png') ?>" class="header-img">
+            <div class="header-container">
+                <h2 class="header-title">Sistem Informasi Kerjasama</h2>
+            </div>
+        </div>
         <form method="post" id="form-search" action="<?php echo base_url($cname . "/get_data") ?>">
             <div style="height: 100px;"></div>
             <div class="inner-form">
