@@ -135,9 +135,13 @@ class Coop_model extends CI_Model
         $now = date('Y-m-d');
         
         $coop_reminder = $this->db
+        ->select('vw_coop_for_email.*,tb_company.name company_name,tb_company.address company_address,tb_coop_type.name as type_name')
+        ->join('tb_company','vw_coop_for_email.fk_company=tb_company.id')
+        ->join('tb_coop_type','vw_coop_for_email.fk_coop_type=tb_coop_type.id')
         ->where('remind_date <=',$now)
         ->where('status',0)
-        ->get($this->vw_coop);
+        ->where('mail_send <=',3)
+        ->get("vw_coop_for_email");
         
         return $coop_reminder->result();
     }

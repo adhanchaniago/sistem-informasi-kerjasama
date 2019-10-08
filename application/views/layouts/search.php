@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -71,7 +70,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 25%, rgba(
             </div>
         </div>
         <form method="post" id="form-search" action="<?php echo base_url($cname . "/get_data") ?>">
-            <div style="height: 100px;"></div>
+            <div style="height: 120px;"></div>
             <div class="inner-form">
                 <div class="basic-search" style="">
                     <div class="input-field">

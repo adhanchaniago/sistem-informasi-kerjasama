@@ -817,7 +817,7 @@ legend {
   -ms-flex-pack: center;
       justify-content: center;
   -ms-flex-align: center;
-      align-items: center;
+      align-items: top;
   background: #d9eff5;
   padding: 15px;
   font-family: 'Lato', sans-serif;
@@ -825,7 +825,7 @@ legend {
 
 .s009 form {
   width: 100%;
-  max-width: 790px;
+  max-width: 1000px;
   margin: 0;
 }
 
