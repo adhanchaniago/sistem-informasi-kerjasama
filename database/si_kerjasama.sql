@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2019 at 03:56 AM
+-- Generation Time: Oct 08, 2019 at 03:56 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -74,7 +74,8 @@ INSERT INTO `tb_coop` (`id`, `fk_company`, `coop_number`, `description`, `start_
 (1, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2022-02-21', 2, 3, 3, '2019-09-02 12:26:38'),
 (2, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 2, 3, 3, '2019-09-02 12:26:38'),
 (3, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, 3, 3, '2019-09-02 12:26:52'),
-(4, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, 3, 3, '2019-09-02 12:26:52');
+(4, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, 3, 3, '2019-09-02 12:26:52'),
+(5, 8, '2', '2', '2019-09-30', '2019-09-30', 0, 3, 3, '2019-09-30 12:00:41');
 
 -- --------------------------------------------------------
 
@@ -93,6 +94,27 @@ CREATE TABLE `tb_coop_type` (
 
 INSERT INTO `tb_coop_type` (`id`, `name`) VALUES
 (3, 'SPK');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_emailing`
+--
+
+CREATE TABLE `tb_emailing` (
+  `id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `recipient` varchar(256) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `message` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_emailing`
+--
+
+INSERT INTO `tb_emailing` (`id`, `date`, `recipient`, `status`, `message`) VALUES
+(1, '2019-10-08 20:54:51', 'aldansorry@gmail.com', 1, '');
 
 -- --------------------------------------------------------
 
@@ -166,6 +188,27 @@ CREATE TABLE `vw_coop` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `vw_coop_for_email`
+-- (See below for the actual view)
+--
+CREATE TABLE `vw_coop_for_email` (
+`id` int(11)
+,`fk_company` int(11)
+,`coop_number` varchar(64)
+,`description` text
+,`start_date` date
+,`end_date` date
+,`fk_coop_type` int(11)
+,`created_by` int(11)
+,`created_date` datetime
+,`status` int(1)
+,`remind_date` date
+,`mail_send` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `_config`
 --
 
@@ -192,6 +235,26 @@ INSERT INTO `_config` (`id`, `key_name`, `value_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `_emailing_coop`
+--
+
+CREATE TABLE `_emailing_coop` (
+  `fk_emailing` int(11) NOT NULL,
+  `fk_coop` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `_emailing_coop`
+--
+
+INSERT INTO `_emailing_coop` (`fk_emailing`, `fk_coop`) VALUES
+(1, 3),
+(1, 4),
+(1, 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `_user_ci`
 --
 
@@ -206,7 +269,7 @@ CREATE TABLE `_user_ci` (
 --
 
 INSERT INTO `_user_ci` (`fk_user`, `ci_session_id`, `ci_session_ts`) VALUES
-(3, 'b4cp18bslqng7pn0ls2klol22vpt5t1f', '2019-09-29 01:09:45'),
+(3, '0j2dgh08hu7bbhmf50ntaijb1fq5fstn', '2019-10-08 12:07:18'),
 (27, NULL, '2019-09-14 13:02:56'),
 (28, NULL, '2019-09-14 13:03:11'),
 (29, NULL, '2019-09-29 00:57:30'),
@@ -242,6 +305,15 @@ DROP TABLE IF EXISTS `vw_coop`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_coop`  AS  select `tb_coop`.`id` AS `id`,`tb_coop`.`fk_company` AS `fk_company`,`tb_coop`.`coop_number` AS `coop_number`,`tb_coop`.`description` AS `description`,`tb_coop`.`start_date` AS `start_date`,`tb_coop`.`end_date` AS `end_date`,`tb_coop`.`fk_coop_type` AS `fk_coop_type`,`tb_coop`.`created_by` AS `created_by`,`tb_coop`.`created_date` AS `created_date`,`tb_coop`.`status` AS `status`,(`tb_coop`.`end_date` - interval 6 month) AS `remind_date` from `tb_coop` ;
 
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_coop_for_email`
+--
+DROP TABLE IF EXISTS `vw_coop_for_email`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_coop_for_email`  AS  select `vw_coop`.`id` AS `id`,`vw_coop`.`fk_company` AS `fk_company`,`vw_coop`.`coop_number` AS `coop_number`,`vw_coop`.`description` AS `description`,`vw_coop`.`start_date` AS `start_date`,`vw_coop`.`end_date` AS `end_date`,`vw_coop`.`fk_coop_type` AS `fk_coop_type`,`vw_coop`.`created_by` AS `created_by`,`vw_coop`.`created_date` AS `created_date`,`vw_coop`.`status` AS `status`,`vw_coop`.`remind_date` AS `remind_date`,(select count(`tb_emailing`.`id`) from (`_emailing_coop` left join `tb_emailing` on((`_emailing_coop`.`fk_emailing` = `tb_emailing`.`id`))) where ((`_emailing_coop`.`fk_coop` = `vw_coop`.`id`) and (`tb_emailing`.`status` = 1))) AS `mail_send` from `vw_coop` ;
+
 --
 -- Indexes for dumped tables
 --
@@ -268,6 +340,12 @@ ALTER TABLE `tb_coop_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_emailing`
+--
+ALTER TABLE `tb_emailing`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_role`
 --
 ALTER TABLE `tb_role`
@@ -286,6 +364,13 @@ ALTER TABLE `tb_user`
 ALTER TABLE `_config`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `key_name` (`key_name`);
+
+--
+-- Indexes for table `_emailing_coop`
+--
+ALTER TABLE `_emailing_coop`
+  ADD KEY `fk_emailing` (`fk_emailing`),
+  ADD KEY `fk_coop` (`fk_coop`);
 
 --
 -- Indexes for table `_user_ci`
@@ -314,13 +399,19 @@ ALTER TABLE `tb_company`
 -- AUTO_INCREMENT for table `tb_coop`
 --
 ALTER TABLE `tb_coop`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_coop_type`
 --
 ALTER TABLE `tb_coop_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_emailing`
+--
+ALTER TABLE `tb_emailing`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_role`
