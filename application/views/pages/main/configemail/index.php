@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Daftar Kerjasama</h3>
+        <h3 class="box-title">Email Konfigurasi</h3>
       </div>
       <div class="box-body">
         <?php echo form_open($cname . '/change_config', ['id' => 'form-create', 'class' => 'form-horizontal']) ?>
@@ -36,6 +36,20 @@
             <input type="text" name="config[email_password]" class="form-control" id="input-email_password" value="<?php echo $_config['email_password'] ?>" placeholder="input email_password">
           </div>
         </div>
+
+        <input type="submit">
+        <?php echo form_close(); ?>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Email Target</h3>
+      </div>
+      <div class="box-body">
+        <?php echo form_open($cname . '/change_config', ['id' => 'form-create', 'class' => 'form-horizontal']) ?>
+
         <div class="form-group">
           <label for="input-coop_number" class="col-sm-2 control-label">email_subject</label>
           <div class="col-sm-10">
@@ -54,8 +68,74 @@
             <input type="text" name="config[email_from_text]" class="form-control" id="input-email_from_text" value="<?php echo $_config['email_from_text'] ?>" placeholder="input email_username">
           </div>
         </div>
+        <div class="form-group">
+          <label for="input-coop_number" class="col-sm-2 control-label">email_recipient</label>
+          <div class="col-sm-10">
+            <input type="text" name="config[email_recipient]" class="form-control" id="input-email_recipient" value="<?php echo $_config['email_recipient'] ?>" placeholder="input email_username">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="input-coop_number" class="col-sm-2 control-label">email_max_send</label>
+          <div class="col-sm-10">
+            <input type="text" name="config[email_max_send]" class="form-control" id="input-email_max_send" value="<?php echo $_config['email_max_send'] ?>" placeholder="input email_username">
+          </div>
+        </div>
         <input type="submit">
         <?php echo form_close(); ?>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Email LOG</h3>
+      </div>
+      <div class="box-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Tanggal</th>
+              <th>Penerima</th>
+              <th>Status</th>
+              <th>Message</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($data_emailing as $key => $value) : ?>
+              <tr>
+                <td><?php echo $key + 1 ?></td>
+                <td><?php echo $value->date ?></td>
+                <td><?php echo $value->recipient ?></td>
+                <td>
+                  <?php if ($value->status == 1) : ?>
+                    <span class="label label-primary">success</span>
+                  <?php else : ?>
+                    <span class="label label-warning">failed</span>
+                  <?php endif ?>
+                </td>
+                <td><?php echo $value->message ?></td>
+                <td>
+                  <?php if ($value->status != 1) : ?>
+                    <a href="<?php echo base_url($cname . '/send_retry/' . $value->id) ?>" class="btn btn-success btn-xs">Retry</a>
+                  <?php endif ?>
+                </td>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Email Sender</h3>
+      </div>
+      <div class="box-body">
+
+        <a href="<?php echo base_url($cname . "/send_email") ?>" class="btn btn-primary">Send Manual</a> / Using CronJob
       </div>
     </div>
   </div>

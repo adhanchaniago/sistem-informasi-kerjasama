@@ -173,27 +173,12 @@
 
                             <h2>Yth, Pembantu Direktur IV</h2>
 
-                            <p>Kielbasa venison ball tip shankle. Boudin prosciutto landjaeger, pancetta jowl turkey tri-tip porchetta beef pork loin drumstick. Frankfurter short ribs kevin pig ribeye drumstick bacon kielbasa. Pork loin brisket biltong, pork belly filet mignon ribeye pig ground round porchetta turducken turkey. Pork belly beef ribs sausage ham hock, ham doner frankfurter pork chop tail meatball beef pig meatloaf short ribs shoulder. Filet mignon ham hock kielbasa beef ribs shank. Venison swine beef ribs sausage pastrami shoulder.</p>
-                            <!-- <table border="1">
-                                <tr>
-                                    <td>Nama Perusahaan</td>
-                                    <td>Nomor</td>
-                                    <td>Tanggal</td>
-                                    <td>Jenis</td>
-                                </tr>
-                                <?php foreach ($coop as $key => $value) : ?>
-                                    <tr>
-                                        <td><?php echo $value->company_name ?></td>
-                                        <td><?php echo $value->coop_number ?></td>
-                                        <td><?php echo $value->start_date . " - " . $value->end_date ?></td>
-                                        <td><?php echo $value->type_name ?></td>
-                                    </tr>
-                                <?php endforeach ?>
-                            </table> -->
+                            <p>SIK memberitahukan bahwa dibawah ini adalah kerjasama - kerjasama yang otomatis diberitahukan setiap kurang dari 6 bulan. Pemberitahuan kerjasama ini sebagai sistem informasi untuk membantu PD4;</p>
+
                             <?php foreach ($coop as $key => $value) : ?>
                                 <table>
                                     <tr>
-                                        <td rowspan="5" width="30px" style="vertical-align:top;"><?php echo $key+1; ?></td>
+                                        <td rowspan="5" width="30px" style="vertical-align:top;"><?php echo $key + 1; ?></td>
                                     </tr>
                                     <tr>
                                         <td width="100px">Nama </td>
@@ -213,43 +198,50 @@
                                     </tr>
                                 </table>
 
-                        <hr style="margin-bottom:15px;">
-                    <?php endforeach ?>
-                    <table>
-                        <tr>
-                            <td align="center">
-                                <p>
-                                    <a href="#" class="button">Share the Awesomeness</a>
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
+                                <hr style="margin-bottom:15px;">
+                            <?php endforeach ?>
 
-                    <p>By the way, if you're wondering where you can find more of this fine meaty filler, visit <a href="http://baconipsum.com">Bacon Ipsum</a>.</p>
+                            <p style="text-align:right">Salam Hangat</p>
+                            <br>
+                            <br>
+                            <br>
+                            <p style="text-align:right">Sistem Informasi Kerjasama</p>
 
-                    <p><em>– Mr. Pen</em></p>
+                            <table>
+                                <tr>
+                                    <td align="center">
+                                        <p>
+                                            <a href="#" class="button">Share the Awesomeness</a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p>By the way, if you're wondering where you can find more of this fine meaty filler, visit <a href="http://baconipsum.com">Bacon Ipsum</a>.</p>
+
+                            <p><em>– Mr. Pen</em></p>
+
+                        </td>
+                    </tr>
+                </table>
 
             </td>
         </tr>
-    </table>
+        <tr>
+            <td class="container">
 
-    </td>
-    </tr>
-    <tr>
-        <td class="container">
+                <!-- Message start -->
+                <table>
+                    <tr>
+                        <td class="content footer" align="center">
+                            <p>Sent by <a href="#">Company Name</a>, 1234 Yellow Brick Road, OZ, 99999</p>
+                            <p><a href="mailto:">hello@company.com</a> | <a href="#">Unsubscribe</a></p>
+                        </td>
+                    </tr>
+                </table>
 
-            <!-- Message start -->
-            <table>
-                <tr>
-                    <td class="content footer" align="center">
-                        <p>Sent by <a href="#">Company Name</a>, 1234 Yellow Brick Road, OZ, 99999</p>
-                        <p><a href="mailto:">hello@company.com</a> | <a href="#">Unsubscribe</a></p>
-                    </td>
-                </tr>
-            </table>
-
-        </td>
-    </tr>
+            </td>
+        </tr>
     </table>
 </body>
 

@@ -130,7 +130,7 @@ class Coop_model extends CI_Model
         ->id;
     }
 
-    public function get_coop_reminder()
+    public function get_coop_reminder($max_send)
     {
         $now = date('Y-m-d');
         
@@ -140,7 +140,22 @@ class Coop_model extends CI_Model
         ->join('tb_coop_type','vw_coop_for_email.fk_coop_type=tb_coop_type.id')
         ->where('remind_date <=',$now)
         ->where('status',0)
-        ->where('mail_send <=',3)
+        ->where('mail_send <',$max_send)
+        ->get("vw_coop_for_email");
+        
+        return $coop_reminder->result();
+    }
+
+    public function get_coop_reminder_by_id_mailing($id_emailing,$max_send)
+    {
+        $now = date('Y-m-d');
+        
+        $coop_reminder = $this->db
+        ->select('vw_coop_for_email.*,tb_company.name company_name,tb_company.address company_address,tb_coop_type.name as type_name')
+        ->join('tb_company','vw_coop_for_email.fk_company=tb_company.id')
+        ->join('tb_coop_type','vw_coop_for_email.fk_coop_type=tb_coop_type.id')
+        ->join('_emailing_coop','vw_coop_for_email.id=_emailing_coop.fk_coop')
+        ->where('_emailing_coop.fk_emailing',$id_emailing)
         ->get("vw_coop_for_email");
         
         return $coop_reminder->result();

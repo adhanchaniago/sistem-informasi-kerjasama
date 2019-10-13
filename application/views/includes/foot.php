@@ -49,6 +49,12 @@
         }
         return true;
     }
+
+    $(document).ready(function(){
+        $.ajax({
+            url : base_url+"/Caller/send_reminder",
+        })
+    });
 </script>
 <?php if (isset($script)) {
     $this->load->view($script);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2019 at 03:56 PM
+-- Generation Time: Oct 13, 2019 at 08:13 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -71,7 +71,7 @@ CREATE TABLE `tb_coop` (
 --
 
 INSERT INTO `tb_coop` (`id`, `fk_company`, `coop_number`, `description`, `start_date`, `end_date`, `status`, `fk_coop_type`, `created_by`, `created_date`) VALUES
-(1, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2022-02-21', 2, 3, 3, '2019-09-02 12:26:38'),
+(1, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2022-02-21', 1, 3, 3, '2019-09-02 12:26:38'),
 (2, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 2, 3, 3, '2019-09-02 12:26:38'),
 (3, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, 3, 3, '2019-09-02 12:26:52'),
 (4, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, 3, 3, '2019-09-02 12:26:52'),
@@ -114,7 +114,9 @@ CREATE TABLE `tb_emailing` (
 --
 
 INSERT INTO `tb_emailing` (`id`, `date`, `recipient`, `status`, `message`) VALUES
-(1, '2019-10-08 20:54:51', 'aldansorry@gmail.com', 1, '');
+(1, '2019-10-13 12:42:48', 'aldansorry@gmail.com', 1, 'Send in : 4.4331641197205 sec'),
+(2, '2019-10-13 12:44:11', 'aldansorry@gmail.com', 1, 'Send in : 3.6594638824463 sec'),
+(3, '2019-10-13 12:44:41', 'aldansorry@gmail.com', 1, 'Send in : 3.752543926239 sec');
 
 -- --------------------------------------------------------
 
@@ -225,12 +227,14 @@ CREATE TABLE `_config` (
 INSERT INTO `_config` (`id`, `key_name`, `value_name`) VALUES
 (1, 'email_username', 'assetmanagementsai@gmail.com'),
 (2, 'email_password', 'assetmanagementsai123'),
-(3, 'email_subject', 'NEW EMAIL 2'),
+(3, 'email_subject', 'PERINGATAN KERJASAMA'),
 (4, 'email_from_cc', 'si_kerjasama@polinema.ac.id'),
 (5, 'email_from_text', 'Sistem Informasi Kerjasama'),
 (6, 'email_protocol', 'smtp'),
 (7, 'email_smtp_host', 'ssl://smtp.googlemail.com'),
-(8, 'email_smtp_port', '465');
+(8, 'email_smtp_port', '465'),
+(9, 'email_recipient', 'aldansorry@gmail.com'),
+(10, 'email_max_send', '3');
 
 -- --------------------------------------------------------
 
@@ -239,7 +243,7 @@ INSERT INTO `_config` (`id`, `key_name`, `value_name`) VALUES
 --
 
 CREATE TABLE `_emailing_coop` (
-  `fk_emailing` int(11) NOT NULL,
+  `fk_emailing` int(11) DEFAULT NULL,
   `fk_coop` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -250,7 +254,13 @@ CREATE TABLE `_emailing_coop` (
 INSERT INTO `_emailing_coop` (`fk_emailing`, `fk_coop`) VALUES
 (1, 3),
 (1, 4),
-(1, 5);
+(1, 5),
+(2, 3),
+(2, 4),
+(2, 5),
+(3, 3),
+(3, 4),
+(3, 5);
 
 -- --------------------------------------------------------
 
@@ -269,7 +279,7 @@ CREATE TABLE `_user_ci` (
 --
 
 INSERT INTO `_user_ci` (`fk_user`, `ci_session_id`, `ci_session_ts`) VALUES
-(3, '0j2dgh08hu7bbhmf50ntaijb1fq5fstn', '2019-10-08 12:07:18'),
+(3, 'q51rp9t4668pmnnln6qsh4h56uo2h1q9', '2019-10-13 05:42:21'),
 (27, NULL, '2019-09-14 13:02:56'),
 (28, NULL, '2019-09-14 13:03:11'),
 (29, NULL, '2019-09-29 00:57:30'),
@@ -411,7 +421,7 @@ ALTER TABLE `tb_coop_type`
 -- AUTO_INCREMENT for table `tb_emailing`
 --
 ALTER TABLE `tb_emailing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_role`
@@ -429,7 +439,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `_config`
 --
 ALTER TABLE `_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
