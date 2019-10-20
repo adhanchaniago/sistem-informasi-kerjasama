@@ -7,37 +7,44 @@
       <div class="box-body">
         <?php echo form_open($cname . '/change_config', ['id' => 'form-create', 'class' => 'form-horizontal']) ?>
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_protocol</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">Protocol</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_protocol]" class="form-control" id="input-email_protocol" value="<?php echo $_config['email_protocol'] ?>" placeholder="input email_protocol">
           </div>
         </div>
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_smtp_host</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">SMTP Host</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_smtp_host]" class="form-control" id="input-email_smtp_host" value="<?php echo $_config['email_smtp_host'] ?>" placeholder="input email_smtp_host">
           </div>
         </div>
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_smtp_port</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">SMTP Port</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_smtp_port]" class="form-control" id="input-email_smtp_port" value="<?php echo $_config['email_smtp_port'] ?>" placeholder="input email_smtp_port">
           </div>
         </div>
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_username</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">Username</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_username]" class="form-control" id="input-email_username" value="<?php echo $_config['email_username'] ?>" placeholder="input email_username">
           </div>
         </div>
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_password</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">Password</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_password]" class="form-control" id="input-email_password" value="<?php echo $_config['email_password'] ?>" placeholder="input email_password">
           </div>
         </div>
 
-        <input type="submit">
+        <div class="form-group">
+          <label for="" class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+
+            <input type="submit" value="Change" class="btn btn-primary">
+          </div>
+        </div>
+
         <?php echo form_close(); ?>
       </div>
     </div>
@@ -51,36 +58,43 @@
         <?php echo form_open($cname . '/change_config', ['id' => 'form-create', 'class' => 'form-horizontal']) ?>
 
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_subject</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">Subject</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_subject]" class="form-control" id="input-email_subject" value="<?php echo $_config['email_subject'] ?>" placeholder="input email_subject">
           </div>
         </div>
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_from_cc</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">CC</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_from_cc]" class="form-control" id="input-email_from_cc" value="<?php echo $_config['email_from_cc'] ?>" placeholder="input email_from_cc">
           </div>
         </div>
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_from_text</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">Description</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_from_text]" class="form-control" id="input-email_from_text" value="<?php echo $_config['email_from_text'] ?>" placeholder="input email_username">
           </div>
         </div>
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_recipient</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">Recipient</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_recipient]" class="form-control" id="input-email_recipient" value="<?php echo $_config['email_recipient'] ?>" placeholder="input email_username">
           </div>
         </div>
         <div class="form-group">
-          <label for="input-coop_number" class="col-sm-2 control-label">email_max_send</label>
+          <label for="input-coop_number" class="col-sm-2 control-label">Max Send</label>
           <div class="col-sm-10">
             <input type="text" name="config[email_max_send]" class="form-control" id="input-email_max_send" value="<?php echo $_config['email_max_send'] ?>" placeholder="input email_username">
           </div>
         </div>
-        <input type="submit">
+        <div class="form-group">
+          <label for="" class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+
+            <input type="submit" value="Change" class="btn btn-primary">
+          </div>
+        </div>
+
         <?php echo form_close(); ?>
       </div>
     </div>

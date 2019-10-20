@@ -10,6 +10,8 @@ class ConfigEmail extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('ConfigEmail_model');
+
+		is_allow(['config_email']);
 	}
 	public function index()
 	{
@@ -57,6 +59,7 @@ class ConfigEmail extends CI_Controller
 				->where("key_name", $key)
 				->update('_config', $set);
 		}
+		redirect($this->cname);
 	}
 
 	public function send_email()

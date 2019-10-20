@@ -56,9 +56,9 @@
                         let ret = "";
 
                         ret += '<div class="btn-group">';
-                        ret += '<button type="button" onclick="change_status(this)" data-id="' + data.id + '" data-status="2" class="btn btn-sm btn-change-status ' + (data.status == '2' ? "btn-primary" : "btn-default") + '">Left</button>';
-                        ret += '<button type="button" onclick="change_status(this)" data-id="' + data.id + '" data-status="0" class="btn btn-sm btn-change-status ' + (data.status == '0' ? "btn-primary" : "btn-default") + '">Middle</button>';
-                        ret += '<button type="button" onclick="change_status(this)" data-id="' + data.id + '" data-status="1" class="btn btn-sm btn-change-status ' + (data.status == '1' ? "btn-primary" : "btn-default") + '">Right</button>';
+                        ret += '<button type="button" onclick="change_status(this)" data-id="' + data.id + '" data-status="2" class="btn btn-sm btn-change-status ' + (data.status == '2' ? "btn-primary" : "btn-default") + '">-1</button>';
+                        ret += '<button type="button" onclick="change_status(this)" data-id="' + data.id + '" data-status="0" class="btn btn-sm btn-change-status ' + (data.status == '0' ? "btn-primary" : "btn-default") + '">0</button>';
+                        ret += '<button type="button" onclick="change_status(this)" data-id="' + data.id + '" data-status="1" class="btn btn-sm btn-change-status ' + (data.status == '1' ? "btn-primary" : "btn-default") + '">+1</button>';
                         ret += '</div>';
                         return ret;
                     }

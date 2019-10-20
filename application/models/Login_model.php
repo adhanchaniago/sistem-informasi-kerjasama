@@ -90,7 +90,7 @@ class Login_model extends CI_Model
     public function get_acl($id)
     {
         return $this->db
-        ->select('crud_user,crud_coop_type,crud_coop')
+        ->select('type,crud_user,crud_coop_type,crud_coop,coop_status_change,config_email')
         ->join('tb_role','_user_role.fk_role=tb_role.id')
         ->where('fk_user',$id)
         ->get('_user_role')
