@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2019 at 08:13 AM
+-- Generation Time: Oct 20, 2019 at 08:35 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -61,6 +61,7 @@ CREATE TABLE `tb_coop` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `status` int(1) NOT NULL,
+  `pdf_file` varchar(64) DEFAULT NULL,
   `fk_coop_type` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -70,12 +71,12 @@ CREATE TABLE `tb_coop` (
 -- Dumping data for table `tb_coop`
 --
 
-INSERT INTO `tb_coop` (`id`, `fk_company`, `coop_number`, `description`, `start_date`, `end_date`, `status`, `fk_coop_type`, `created_by`, `created_date`) VALUES
-(1, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2022-02-21', 1, 3, 3, '2019-09-02 12:26:38'),
-(2, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 2, 3, 3, '2019-09-02 12:26:38'),
-(3, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, 3, 3, '2019-09-02 12:26:52'),
-(4, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, 3, 3, '2019-09-02 12:26:52'),
-(5, 8, '2', '2', '2019-09-30', '2019-09-30', 0, 3, 3, '2019-09-30 12:00:41');
+INSERT INTO `tb_coop` (`id`, `fk_company`, `coop_number`, `description`, `start_date`, `end_date`, `status`, `pdf_file`, `fk_coop_type`, `created_by`, `created_date`) VALUES
+(1, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2022-02-21', 1, 'coop_1.pdf', 3, 3, '2019-09-02 12:26:38'),
+(2, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 2, NULL, 3, 3, '2019-09-02 12:26:38'),
+(3, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, NULL, 3, 3, '2019-09-02 12:26:52'),
+(4, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, NULL, 3, 3, '2019-09-02 12:26:52'),
+(5, 8, '2', '2', '2019-09-30', '2019-09-30', 0, NULL, 3, 3, '2019-09-30 12:00:41');
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,8 @@ CREATE TABLE `tb_coop_type` (
 --
 
 INSERT INTO `tb_coop_type` (`id`, `name`) VALUES
-(3, 'SPK');
+(3, 'SPK'),
+(4, 'MoU');
 
 -- --------------------------------------------------------
 
@@ -184,6 +186,7 @@ CREATE TABLE `vw_coop` (
 ,`created_by` int(11)
 ,`created_date` datetime
 ,`status` int(1)
+,`pdf_file` varchar(64)
 ,`remind_date` date
 );
 
@@ -279,7 +282,7 @@ CREATE TABLE `_user_ci` (
 --
 
 INSERT INTO `_user_ci` (`fk_user`, `ci_session_id`, `ci_session_ts`) VALUES
-(3, 'q51rp9t4668pmnnln6qsh4h56uo2h1q9', '2019-10-13 05:42:21'),
+(3, '8t0eq47m9j4aun8ukt03j2tk7i4r3i4c', '2019-10-20 06:34:01'),
 (27, NULL, '2019-09-14 13:02:56'),
 (28, NULL, '2019-09-14 13:03:11'),
 (29, NULL, '2019-09-29 00:57:30'),
@@ -313,7 +316,7 @@ INSERT INTO `_user_role` (`fk_user`, `fk_role`) VALUES
 --
 DROP TABLE IF EXISTS `vw_coop`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_coop`  AS  select `tb_coop`.`id` AS `id`,`tb_coop`.`fk_company` AS `fk_company`,`tb_coop`.`coop_number` AS `coop_number`,`tb_coop`.`description` AS `description`,`tb_coop`.`start_date` AS `start_date`,`tb_coop`.`end_date` AS `end_date`,`tb_coop`.`fk_coop_type` AS `fk_coop_type`,`tb_coop`.`created_by` AS `created_by`,`tb_coop`.`created_date` AS `created_date`,`tb_coop`.`status` AS `status`,(`tb_coop`.`end_date` - interval 6 month) AS `remind_date` from `tb_coop` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_coop`  AS  select `tb_coop`.`id` AS `id`,`tb_coop`.`fk_company` AS `fk_company`,`tb_coop`.`coop_number` AS `coop_number`,`tb_coop`.`description` AS `description`,`tb_coop`.`start_date` AS `start_date`,`tb_coop`.`end_date` AS `end_date`,`tb_coop`.`fk_coop_type` AS `fk_coop_type`,`tb_coop`.`created_by` AS `created_by`,`tb_coop`.`created_date` AS `created_date`,`tb_coop`.`status` AS `status`,`tb_coop`.`pdf_file` AS `pdf_file`,(`tb_coop`.`end_date` - interval 6 month) AS `remind_date` from `tb_coop` ;
 
 -- --------------------------------------------------------
 
@@ -415,7 +418,7 @@ ALTER TABLE `tb_coop`
 -- AUTO_INCREMENT for table `tb_coop_type`
 --
 ALTER TABLE `tb_coop_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_emailing`

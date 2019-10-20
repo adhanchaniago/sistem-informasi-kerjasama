@@ -45,6 +45,8 @@
     $('#input-upload').change(function() {
       $("form#form-upload-excel").submit();
     });
+
+    add_form();
   });
 
   var add_form = (row_data = null) => {

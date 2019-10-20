@@ -51,10 +51,23 @@ class Coop_model extends CI_Model
         ->result();
     }
 
+    public function get_search($word)
+    {
+        return $this->db
+        ->select($this->tb_coop.'.id,'.$this->tb_company.'.name as company_name,'.$this->tb_company.'.address as company_address,coop_number,description,start_date,end_date,status,tb_coop_type.name as coop_type_name')
+        ->join($this->tb_company,$this->tb_coop.'.fk_company='.$this->tb_company.'.id')
+        ->join($this->tb_coop_type,$this->tb_coop.'.fk_coop_type='.$this->tb_coop_type.'.id')
+        ->or_like('tb_company.name',$word,"both")
+        ->or_like('tb_company.address',$word,"both")
+        ->or_like('tb_company.address',$word,"both")
+        ->get($this->tb_coop)
+        ->result();
+    }
+
     public function get_by_id($id)
     {
         return $this->db
-        ->select($this->tb_coop.'.id,'.$this->tb_company.'.name as company_name,'.$this->tb_company.'.address as company_address,coop_number,description,start_date,end_date,fk_coop_type,tb_coop_type.name as coop_type_name')
+        ->select($this->tb_coop.'.id,'.$this->tb_company.'.name as company_name,'.$this->tb_company.'.address as company_address,coop_number,description,start_date,end_date,fk_coop_type,tb_coop.pdf_file,tb_coop_type.name as coop_type_name')
         ->join($this->tb_company,$this->tb_coop.'.fk_company='.$this->tb_company.'.id')
         ->join($this->tb_coop_type,$this->tb_coop.'.fk_coop_type='.$this->tb_coop_type.'.id')
         ->where($this->tb_coop.'.id',$id)

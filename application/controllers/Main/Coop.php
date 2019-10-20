@@ -60,6 +60,19 @@ class Coop extends CI_Controller
 		$this->load->view('pages/main/coop/update', $data);
 	}
 
+	public function pdf_upload()
+	{
+		$id = $this->input->post('id');
+
+		$data = [
+			'cname' => $this->cname,
+			'list_company' => $this->Coop_model->get_company(),
+			'list_coop_type' => $this->CoopType_model->get(),
+			'coop' => $this->Coop_model->get_by_id($id),
+		];
+		$this->load->view('pages/main/coop/pdf_upload', $data);
+	}
+
 	public function get_data()
 	{
 		$data['data'] = $this->Coop_model->get();
@@ -170,6 +183,44 @@ class Coop extends CI_Controller
 				'type' => 'warning',
 				'message' => 'Message : ' . $delete['message'],
 				'title' => 'Delete'
+			]);
+		}
+	}
+
+	public function action_pdf_upload()
+	{
+		$id = $this->input->post('id');
+		
+		$config['upload_path'] = './data_storage/pdf/';
+		$config['allowed_types'] = 'pdf';
+		$config['max_size']  = '2000';
+		$config['overwrite'] = TRUE;
+
+		$config['file_name'] = "coop_".$id.".pdf";
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('pdf_file')){
+			$error = $this->upload->display_errors('','');
+
+			echo json_encode([
+				'type' => 'warning',
+				'message' => 'Error Message : ' . $error,
+				'title' => 'Upload'
+			]);
+			
+		}
+		else{
+			$upload_data = $this->upload->data();
+			
+			$this->db
+			->where('id',$id)
+			->update('tb_coop',['pdf_file' => $upload_data['file_name']]);
+			
+			echo json_encode([
+				'type' => 'success',
+				'message' => 'Upload success ',
+				'title' => 'Upload'
 			]);
 		}
 	}

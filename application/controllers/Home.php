@@ -13,12 +13,12 @@ class Home extends CI_Controller {
 		$data = [
             'cname' => $this->cname
 		];
-		$this->load->view('layouts/search',$data);
+		$this->load->view('layouts/landing',$data);
     }
     
     public function get_data()
     {
-        $data['data'] = $this->Coop_model->get();
+        $data['data'] = $this->Coop_model->get_search($this->input->post('word'));
         echo json_encode($data);
     }
 }

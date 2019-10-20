@@ -12,6 +12,7 @@
               <th data-filter=""></th>
               <th data-filter=""></th>
               <th data-filter=""></th>
+              <th data-filter=""></th>
 
               <th data-filter="text"></th>
               <th data-filter="text"></th>

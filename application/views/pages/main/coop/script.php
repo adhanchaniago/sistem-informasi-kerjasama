@@ -78,8 +78,17 @@
                         ret += '<div class="btn-group">';
                         ret += '<a href="javascript:void(0)" onclick="update_prompt(this)" class="btn btn-xs btn-flat text-success" data-id="' + data.id + '"><i class="fa fa-pencil"></i> Edit</a>';
                         ret += '<a href="javascript:void(0)" onclick="delete_prompt(this)" class="btn btn-xs btn-flat text-danger" data-id="' + data.id + '"><i class="fa fa-trash"></i> Hapus</a>';
-                
+
                         ret += '</div>';
+                        return ret;
+                    }
+                },
+                {
+                    'title': 'PDF',
+                    "width": "79px",
+                    'data': (data) => {
+                        let ret = "";
+                        ret += '<a href="javascript:void(0)" onclick="pdf_prompt(this)" class="btn btn-xs btn-flat text-warning" data-id="' + data.id + '"><i class="fa fa-pdf"></i> PDF</a>';
                         return ret;
                     }
                 },
@@ -136,12 +145,12 @@
                 elementModal.find('#modal-body-container').html(data);
                 elementModal.modal('show');
                 elementModal.find('.select2').select2();
-                elementModal.find('#input-company_name').change(function(){
-                    let address = elementModal.find('#list-company').find('[value="'+$(this).val()+'"]').data('address');
+                elementModal.find('#input-company_name').change(function() {
+                    let address = elementModal.find('#list-company').find('[value="' + $(this).val() + '"]').data('address');
                     elementModal.find('#input-company_address').val(address);
                 });
-                elementModal.find("#input-start_date").change(function(){
-                    elementModal.find('#input-end_date').prop('min',$(this).val());
+                elementModal.find("#input-start_date").change(function() {
+                    elementModal.find('#input-end_date').prop('min', $(this).val());
                 })
 
                 $("form#form-create").submit(function(e) {
@@ -201,12 +210,12 @@
                 elementModal.find('#modal-body-container').html(data);
                 elementModal.modal('show');
                 elementModal.find('.select2').select2();
-                elementModal.find('#input-company_name').change(function(){
-                    let address = elementModal.find('#list-company').find('[value="'+$(this).val()+'"]').data('address');
+                elementModal.find('#input-company_name').change(function() {
+                    let address = elementModal.find('#list-company').find('[value="' + $(this).val() + '"]').data('address');
                     elementModal.find('#input-company_address').val(address);
                 });
-                elementModal.find("#input-start_date").change(function(){
-                    elementModal.find('#input-end_date').prop('min',$(this).val());
+                elementModal.find("#input-start_date").change(function() {
+                    elementModal.find('#input-end_date').prop('min', $(this).val());
                 })
 
                 $("form#form-update").submit(function(e) {
@@ -239,6 +248,51 @@
 
                                 });
                             }
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    });
+                });
+            }
+        })
+    };
+
+    var pdf_prompt = (btnObject) => {
+        let elementButton = $(btnObject);
+        let elementModal = $('#modal-default');
+        let id = elementButton.data('id');
+        elementModal.find('.modal-title').text('Upload PDF');
+        elementModal.find('#modal-btn-accept').text('Upload');
+        elementModal.find('#modal-btn-accept').attr('form', 'form-pdf');
+        $.ajax({
+            url: base_url + "/" + cname + "/pdf_upload",
+            type: 'POST',
+            data: {
+                id: id
+            },
+            success: (data) => {
+                elementModal.find('#modal-body-container').html(data);
+                elementModal.modal('show');
+
+                $("form#form-pdf").submit(function(e) {
+                    e.preventDefault();
+
+                    let elementForm = $(this);
+                    let formData = new FormData(this);
+
+                    $.ajax({
+                        url: elementForm.attr('action'),
+                        type: 'POST',
+                        data: formData,
+                        dataType: 'JSON',
+                        success: function(data) {
+                            Swal.fire(
+                                data.title,
+                                data.message,
+                                data.type
+                            );
+                            elementModal.modal('hide');
                         },
                         cache: false,
                         contentType: false,
