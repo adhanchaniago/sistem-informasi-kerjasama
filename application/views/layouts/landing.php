@@ -38,7 +38,7 @@
 					<div class="header-wrap">
 						<div class="header-top d-flex justify-content-between align-items-center">
 							<div class="logo">
-								<a href="index.html"><img src="<?php echo base_url("assets/bobsled/") ?>img/logo.png" alt=""></a>
+								<a href="index.html"><img src="<?php echo base_url("assets/img/") ?>logo.png" alt="" width="60px"></a>
 							</div>
 							<div class="main-menubar d-flex align-items-center">
 								<nav class="hide">
@@ -56,9 +56,10 @@
 					<div class="row height align-items-center">
 						<div class="col-lg-7">
 							<div class="banner-content">
-								<h1 class="text-white text-uppercase mb-10">Don’t look anywhere, <br> This is the best place on web</h1>
-								<p class="text-white mb-30">Living in today’s metropolitan world of cellular phones, mobile computers and other high-tech gadgets is not just hectic but very</p>
-								<a href="#" class="primary-btn d-inline-flex align-items-center"><span class="mr-10">Get Started</span><span class="lnr lnr-arrow-right"></span></a>
+								<h1 class="text-white text-uppercase mb-10">Politeknik Negri Malang,</h1>
+								<p class="text-white mb-30">Sistem Informasi Kerjasama,<br>
+								Sistem ini digunakan untuk mencari kerjasama yang telah disepakati oleh POLINEMA</p>
+								<a href="#input-search" class="primary-btn d-inline-flex align-items-center"><span class="mr-10">Get Started</span><span class="lnr lnr-arrow-right"></span></a>
 							</div>
 						</div>
 					</div>
@@ -67,7 +68,7 @@
 		</div>
 	</div>
 	<div class="main-wrapper">
-		<section class="subscription-area">
+		<section class="subscription-area" id="input-searchs">
 			<div class="container">
 				<div class="row align-items-center">
 
@@ -155,114 +156,7 @@
 
 
 
-		<!-- Start Remarkable Wroks Area -->
-		<section class="remarkable-area">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6">
-						<div class="section-title text-center">
-							<h2>Remarkable Works</h2>
-							<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have allowed humanity to create slimmer, more </p>
-						</div>
-					</div>
-				</div>
-				<div class="single-remark">
-					<div class="row no-gutters">
-						<div class="col-lg-7 col-md-6">
-							<div class="remark-thumb" style="background: url(<?php echo base_url("assets/bobsled/") ?>img/r1.jpg);"></div>
-						</div>
-						<div class="col-lg-5 col-md-6">
-							<div class="remark-desc">
-								<h4>Vector Illustration</h4>
-								<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have allowed humanity to create slimmer, more portable technology.</p>
-								<a href="#" class="primary-btn"><span>View Project</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="single-remark">
-					<div class="row no-gutters">
-						<div class="col-lg-7 col-md-6">
-							<div class="remark-desc">
-								<h4>Vector Illustration</h4>
-								<p>While most people enjoy casino gambling, sports betting, lottery and bingo playing for the fun and excitement it provides, others may experience gambling as an addictive and distractive habit. Statistics show that while 85 percent of the adult population in </p>
-								<a href="#" class="primary-btn"><span>View Project</span></a>
-							</div>
-						</div>
-						<div class="col-lg-5 col-md-6">
-							<div class="remark-thumb" style="background: url(<?php echo base_url("assets/bobsled/") ?>img/r2.jpg);"></div>
-						</div>
-					</div>
-				</div>
-				<div class="single-remark">
-					<div class="row no-gutters">
-						<div class="col-lg-7 col-md-6">
-							<div class="remark-thumb" style="background: url(<?php echo base_url("assets/bobsled/") ?>img/r3.jpg);"></div>
-						</div>
-						<div class="col-lg-5 col-md-6">
-							<div class="remark-desc">
-								<h4>Vector Illustration</h4>
-								<p>LCD screens are uniquely modern in style, and the liquid crystals that make them work have allowed humanity to create slimmer, more portable technology.</p>
-								<a href="#" class="primary-btn"><span>View Project</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End Remarkable Wroks Area -->
-		<!-- Start Story Area -->
-		<section class="story-area">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-1">
-					</div>
-					<div class="col-lg-7">
-						<div class="story-box">
-							<h6 class="text-uppercase">From the part of beginning</h6>
-							<p>Usage of the Internet is becoming more common due to rapid advancement of technology and the power of globalization. Societies are becoming more inter-connected. Thoughts from different</p>
-							<a href="#" class="primary-btn d-inline-flex align-items-center"><span class="mr-10">Get Started</span><span class="lnr lnr-arrow-right"></span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End Story Area -->
-
-
-		<!-- Start Subscription Area -->
-
-		<!-- End Subscription Area -->
-		<!-- Start Contact Form -->
-		<section class="contact-form-area">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6">
-						<div class="section-title text-center">
-							<h2 class="text-white">Keep in Touch</h2>
-							<p class="text-white">Most people who work in an office environment, buy computer products, or have a computer at home have had the “fun” experience of dealing </p>
-						</div>
-					</div>
-				</div>
-				<form id="myForm" action="mail.php" method="post" class="contact-form">
-					<div class="row justify-content-center">
-						<div class="col-lg-5">
-							<input type="text" name="fname" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mt-20" required>
-						</div>
-						<div class="col-lg-5">
-							<input type="email" name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mt-20" required>
-						</div>
-						<div class="col-lg-10">
-							<textarea class="common-textarea mt-20" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required></textarea>
-						</div>
-						<div class="col-lg-10 d-flex justify-content-end">
-							<button class="primary-btn submit-btn d-inline-flex align-items-center mt-20"><span class="mr-10">Send Message</span><span class="lnr lnr-arrow-right"></span></button> <br>
-							<div class="alert-msg"></div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</section>
+		
 		<!-- End Contact Form -->
 		<!-- Start Footer Widget Area -->
 		<section class="footer-widget-area">
@@ -272,17 +166,16 @@
 						<div class="single-widget">
 							<div class="desc">
 								<h6 class="title">Address</h6>
-								<p>56/8, panthapath, west <br> dhanmondi, kalabagan</p>
+								<p>Jln. Soekarno Hatta No.9<br> Jatimulyo, Kec.Lowokwaru,Kota Malang, Jawa Timur</p>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="single-widget">
 							<div class="desc">
-								<h6 class="title">Email Address</h6>
+								<h6 class="title">Link</h6>
 								<div class="contact">
-									<a href="mailto:info@dataarc.com">info@dataarc.com</a> <br>
-									<a href="mailto:support@dataarc.com">support@dataarc.com</a>
+									<a href="mailto:info@dataarc.com">https://www.polinema.ac.id</a>
 								</div>
 							</div>
 						</div>
@@ -292,8 +185,7 @@
 							<div class="desc">
 								<h6 class="title">Phone Number</h6>
 								<div class="contact">
-									<a href="tel:1545">012 4562 982 3612</a> <br>
-									<a href="tel:54512">012 6321 956 4587</a>
+									<a href="tel:1545">(0341) 404423</a>
 								</div>
 							</div>
 						</div>
@@ -303,10 +195,8 @@
 			<footer>
 				<div class="container">
 					<div class="footer-content d-flex justify-content-between align-items-center flex-wrap">
-						<div class="logo">
-							<a href="index.html"><img src="<?php echo base_url("assets/bobsled/") ?>img/logo.png" alt=""></a>
-						</div>
-						<div class="copy-right-text">Copyright &copy; 2017 | All rights reserved to <a href="#">Dinomuz inc.</a> Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
+						
+					<div class="copy-right-text">Copyright &copy; 2017 | All rights reserved to <a href="#">Dinomuz inc.</a> Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></div>
 						<div class="footer-social">
 							<a href="#"><i class="fa fa-facebook"></i></a>
 							<a href="#"><i class="fa fa-twitter"></i></a>
