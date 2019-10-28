@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2019 at 08:35 AM
+-- Generation Time: Oct 28, 2019 at 03:10 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -76,7 +76,7 @@ INSERT INTO `tb_coop` (`id`, `fk_company`, `coop_number`, `description`, `start_
 (2, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 2, NULL, 3, 3, '2019-09-02 12:26:38'),
 (3, 9, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, NULL, 3, 3, '2019-09-02 12:26:52'),
 (4, 8, '007/HPDS/BDSR/II/18     2531/PL2.4/HK/2018', 'Perjanjian tentang \"Bantuan dana sosial regular bagi mahasiswa\" di POLINEMA', '2018-02-21', '2019-02-21', 0, NULL, 3, 3, '2019-09-02 12:26:52'),
-(5, 8, '2', '2', '2019-09-30', '2019-09-30', 0, NULL, 3, 3, '2019-09-30 12:00:41');
+(5, 8, '2', '2', '2018-09-30', '2019-10-30', 0, NULL, 3, 3, '2019-09-30 12:00:41');
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,9 @@ CREATE TABLE `tb_emailing` (
 INSERT INTO `tb_emailing` (`id`, `date`, `recipient`, `status`, `message`) VALUES
 (1, '2019-10-13 12:42:48', 'aldansorry@gmail.com', 1, 'Send in : 4.4331641197205 sec'),
 (2, '2019-10-13 12:44:11', 'aldansorry@gmail.com', 1, 'Send in : 3.6594638824463 sec'),
-(3, '2019-10-13 12:44:41', 'aldansorry@gmail.com', 1, 'Send in : 3.752543926239 sec');
+(3, '2019-10-13 12:44:41', 'aldansorry@gmail.com', 1, 'Send in : 3.752543926239 sec'),
+(4, '2019-10-20 13:43:09', 'aldansorry@gmail.com', 1, 'Send in : 5.9514188766479 sec'),
+(5, '2019-10-28 09:09:50', 'aldansorry@gmail.com', 1, 'Send in : 6.1643300056458 sec');
 
 -- --------------------------------------------------------
 
@@ -131,16 +133,18 @@ CREATE TABLE `tb_role` (
   `type` varchar(16) NOT NULL,
   `crud_user` tinyint(1) NOT NULL,
   `crud_coop_type` tinyint(1) NOT NULL,
-  `crud_coop` tinyint(1) NOT NULL
+  `crud_coop` tinyint(1) NOT NULL,
+  `coop_status_change` tinyint(1) NOT NULL,
+  `config_email` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_role`
 --
 
-INSERT INTO `tb_role` (`id`, `type`, `crud_user`, `crud_coop_type`, `crud_coop`) VALUES
-(1, 'admin', 1, 1, 1),
-(3, 'pd4', 0, 0, 0);
+INSERT INTO `tb_role` (`id`, `type`, `crud_user`, `crud_coop_type`, `crud_coop`, `coop_status_change`, `config_email`) VALUES
+(1, 'admin', 1, 1, 1, 1, 1),
+(3, 'pd4', 0, 0, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -168,6 +172,18 @@ INSERT INTO `tb_user` (`id`, `name`, `address`, `phone`, `email`, `username`, `p
 (28, 'a', '3', '3', '3', '3', 'eccbc87e4b5ce2fe28308fd9f2a7baf3'),
 (29, 'a', '4', '4', '4', '4', 'a87ff679a2f3e71d9181a67b7542122c'),
 (30, 'aa', '5', '5', '5', '5', 'e4da3b7fbbce2345d7772b0674a318d5');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_chart_coop`
+-- (See below for the actual view)
+--
+CREATE TABLE `vw_chart_coop` (
+`active` bigint(21)
+,`will_expired` bigint(21)
+,`expired` bigint(21)
+);
 
 -- --------------------------------------------------------
 
@@ -237,7 +253,7 @@ INSERT INTO `_config` (`id`, `key_name`, `value_name`) VALUES
 (7, 'email_smtp_host', 'ssl://smtp.googlemail.com'),
 (8, 'email_smtp_port', '465'),
 (9, 'email_recipient', 'aldansorry@gmail.com'),
-(10, 'email_max_send', '3');
+(10, 'email_max_send', '5');
 
 -- --------------------------------------------------------
 
@@ -263,7 +279,13 @@ INSERT INTO `_emailing_coop` (`fk_emailing`, `fk_coop`) VALUES
 (2, 5),
 (3, 3),
 (3, 4),
-(3, 5);
+(3, 5),
+(4, 3),
+(4, 4),
+(4, 5),
+(5, 3),
+(5, 4),
+(5, 5);
 
 -- --------------------------------------------------------
 
@@ -282,8 +304,8 @@ CREATE TABLE `_user_ci` (
 --
 
 INSERT INTO `_user_ci` (`fk_user`, `ci_session_id`, `ci_session_ts`) VALUES
-(3, '8t0eq47m9j4aun8ukt03j2tk7i4r3i4c', '2019-10-20 06:34:01'),
-(27, NULL, '2019-09-14 13:02:56'),
+(3, '9i4vm2iqrvggfhnk15ef9v3cm08i5qek', '2019-10-28 02:09:59'),
+(27, NULL, '2019-10-20 08:35:25'),
 (28, NULL, '2019-09-14 13:03:11'),
 (29, NULL, '2019-09-29 00:57:30'),
 (30, NULL, '2019-09-29 00:57:40');
@@ -308,6 +330,15 @@ INSERT INTO `_user_role` (`fk_user`, `fk_role`) VALUES
 (27, 3),
 (29, 1),
 (30, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_chart_coop`
+--
+DROP TABLE IF EXISTS `vw_chart_coop`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_chart_coop`  AS  select (select count(`tb_coop`.`id`) from `tb_coop` where ((`tb_coop`.`end_date` - interval 6 month) >= now())) AS `active`,(select count(`tb_coop`.`id`) from `tb_coop` where (((`tb_coop`.`end_date` - interval 6 month) < now()) and (`tb_coop`.`end_date` >= now()))) AS `will_expired`,(select count(`tb_coop`.`id`) from `tb_coop` where (`tb_coop`.`end_date` < now())) AS `expired` ;
 
 -- --------------------------------------------------------
 
@@ -424,7 +455,7 @@ ALTER TABLE `tb_coop_type`
 -- AUTO_INCREMENT for table `tb_emailing`
 --
 ALTER TABLE `tb_emailing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_role`
